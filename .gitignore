@@ -1,0 +1,17 @@
+# Ignore static files collected for deployment
+/staticfiles
+
+# Ignore environment variables file
+.env
+
+# Ignore Python cache
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+
+# Ignore virtual environment
+venv/
+
+# Ignore logs
+*.log
