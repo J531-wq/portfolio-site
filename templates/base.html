@@ -1,0 +1,277 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Joseph Omagu Portfolio</title>
+  <style>
+    body { margin:0; font-family:Arial,sans-serif; background:#0d0d0d; color:#f5f5f5; padding-top:80px; }
+    header { background:#111; padding:20px; display:flex; justify-content:space-between; align-items:center;
+             position:fixed; top:0; left:0; width:100%; z-index:1000; box-shadow:0 2px 5px rgba(0,0,0,0.5); }
+    header h1 { margin:0; color:#00aaff; }
+  nav {
+  flex: 1;                   /* let nav expand fully inside header */
+  text-align: right;         /* align links neatly to the right */
+  white-space: nowrap;       /* keep words intact on one line */
+  overflow: visible;         /* prevent clipping of last letters */
+  padding-right: 40px;       /* extra space so the last letter shows fully */
+}
+
+nav a {
+  display: inline-block;     /* each link is a proper box */
+  color: #f5f5f5;
+  margin: 0 20px;            /* balanced spacing left and right */
+  text-decoration: none;
+}
+
+nav a:hover {
+  color: #00aaff;
+}
+
+
+
+
+    .hero { display:flex; align-items:center; justify-content:space-around; padding:60px 20px; }
+    .hero img { width:250px; border-radius:10px; border:3px solid #00aaff; }
+    .hero-text h2 { font-size:2.5em; margin:0; color:#00aaff; }
+    .hero-text p { font-size:1.2em; color:#ccc; }
+    .buttons button { margin:10px; padding:10px 20px; border:2px solid #00aaff; background:none; color:#00aaff;
+                      cursor:pointer; transition:0.3s; }
+    .buttons button:hover { background:#00aaff; color:white; }
+    .about,.projects,.skills,.contact { padding:40px 20px; background:#1a1a1a; margin-top:20px; }
+    .about h3,.projects h3,.skills h3,.contact h3 { color:#00aaff; margin-bottom:20px; }
+    .projects-container { 
+  display:flex; 
+  flex-wrap:wrap; 
+  justify-content:flex-start;   /* align cards from the left corner */
+  gap:20px; 
+}
+
+    .project-card { background:#222; padding:20px; border-radius:10px; width:300px; text-align:center;
+                    box-shadow:0 2px 5px rgba(0,0,0,0.5); }
+    .project-card h4 { color:#00aaff; margin-bottom:10px; }
+    .project-card p { color:#ccc; font-size:0.95em; }
+    .project-card img { width:100%; height:auto; border-radius:5px; margin:10px 0; }
+    .project-card .buttons a { display:inline-block; margin:5px; padding:8px 12px; border:1px solid #00aaff;
+                               color:#00aaff; text-decoration:none; transition:0.3s; }
+    .project-card .buttons a:hover { background:#00aaff; color:white; }
+    .skills-icons { display:flex; flex-wrap:wrap; justify-content:center; }
+    .skill-icon { width:60px; height:60px; margin:15px; transition:transform 0.3s; }
+    .skill-icon:hover { transform:scale(1.2); }
+    .skill-item {
+  text-align: center;   /* centers text above icon */
+  margin: 15px;
+}
+
+.skill-item p {
+  margin-bottom: 8px;   /* space between name and icon */
+  color: #f5f5f5;       /* matches your theme */
+  font-weight: bold;
+}
+.skills, .contact {
+  display: block;     /* force each section to stack vertically */
+  width: 100%;        /* take full width of the page */
+  margin-top: 20px;   /* spacing between sections */
+}
+
+
+    .contact-icons { margin-bottom:20px; }
+    .contact-icons a { margin-right:15px; }
+    .contact-icons .icon { width:40px; height:40px; transition:transform 0.3s; }
+    .contact-icons .icon:hover { transform:scale(1.2); }
+    .contact form { display:flex; flex-direction:column; max-width:400px; }
+    .contact input,.contact textarea { margin-bottom:10px; padding:10px; border:none; border-radius:5px; }
+    .contact button { padding:10px; border:none; background:#00aaff; color:white; cursor:pointer; }
+    footer { text-align:center; padding:20px; background:#111; margin-top:20px; }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>Joseph Omagu</h1>
+   <nav>
+
+    <a href="#home">Home</a>
+    <a href="#about">About</a>
+  <a href="#skills">Skills</a>
+  <a href="#contact">Contact</a>
+</nav>
+
+  </header>
+  
+{% if message_sent %}
+  <div id="flash-message" style="
+      position: fixed;
+      top: 0;
+      left: 50%;
+      transform: translateX(-50%);
+      background: #28a745;
+      color: white;
+      padding: 15px 25px;
+      border-radius: 5px;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.3);
+      z-index: 2000;
+      font-weight: bold;
+  ">
+    ✅ Your message has been sent successfully!
+  </div>
+  <script>
+    // Remove flash message after 5 seconds
+    setTimeout(function() {
+      var flash = document.getElementById('flash-message');
+      if (flash) {
+        flash.style.transition = "opacity 0.5s ease";
+        flash.style.opacity = "0";
+        setTimeout(function(){ flash.remove(); }, 500);
+      }
+    }, 5000);
+  </script>
+{% endif %}
+
+
+  <section class="hero" id="home">
+    <img src="../static/images/me 1.jpg" alt="Joseph Omagu">
+    <div class="hero-text">
+      <h2>Hello, I'm Joseph Omagu</h2>
+      <p>Full Stack Developer</p>
+      <p>Building innovative web solutions</p>
+      <div class="buttons">
+        <button onclick="scrollToSection('projects')">View My Work</button>
+        <button onclick="scrollToSection('contact')">Contact Me</button>
+      </div>
+    </div>
+</section>
+
+  </section>
+
+  <section class="about" id="about">
+    <h3>About Me</h3>
+    <p>
+      I'm a passionate full stack developer experienced in building and deploying modern web applications. 
+      I love coding and creating impactful solutions using: HTML, CSS, JavaScript, Python, Django, PostgreSQL, PGadmin4, and Docker.
+    </p>
+  </section>
+
+  <section class="projects" id="projects">
+    <h3>My Projects</h3>
+    <div class="projects-container">
+      {% for project in projects %}
+        <div class="project-card">
+          <h4>{{ project.title }}</h4>
+          <p>{{ project.description }}</p>
+          {% if project.image %}
+            <img src="{{ project.image.url }}" alt="{{ project.title }}" class="project-image">
+          {% endif %}
+          <div class="buttons">
+            {% if project.demo_link %}
+              <a href="{{ project.demo_link }}" target="_blank">Live Demo</a>
+            {% endif %}
+            {% if project.github_link %}
+              <a href="{{ project.github_link }}" target="_blank">GitHub Code</a>
+            {% endif %}
+          </div>
+        </div>
+      {% empty %}
+        <p>No projects added yet. Please check back soon!</p>
+      {% endfor %}
+   <section class="skills" id="skills">
+  <h3>Skills & Technologies</h3>
+  <div class="skills-icons">
+    <div class="skill-item">
+      <p>HTML</p>
+      <img src="../static/images/html.jpg" alt="HTML" class="skill-icon">
+    </div>
+    <div class="skill-item">
+      <p>CSS</p>
+      <img src="../static/images/css.jpg" alt="CSS" class="skill-icon">
+    </div>
+    <div class="skill-item">
+      <p>JavaScript</p>
+      <img src="../static/images/js.jpg" alt="JavaScript" class="skill-icon">
+    </div>
+    <div class="skill-item">
+      <p>Django</p>
+      <img src="../static/images/dj.jpg" alt="Django" class="skill-icon">
+    </div>
+    <div class="skill-item">
+      <p>Python</p>
+      <img src="../static/images/python.jpg" alt="Python" class="skill-icon">
+    </div>
+    <div class="skill-item">
+      <p>PGadmin4</p>
+      <img src="../static/images/PGadmin4.jpg" alt="PGadmin4" class="skill-icon">
+    </div>
+    <div class="skill-item">
+      <p>PostgreSQL</p>
+      <img src="../static/images/postgre.jpg" alt="PostgreSQL" class="skill-icon">
+    </div>
+    <div class="skill-item">
+      <p>Docker</p>
+      <img src="../static/images/docker.jpg" alt="Docker" class="skill-icon">
+    </div>
+  </div>
+</section>
+
+
+
+  <section class="contact" id="contact">
+    <h3>Get In Touch</h3>
+    <div class="contact-icons">
+      <a href="https://www.linkedin.com/in/omagu-joseph-7793ab363" target="_blank">
+        <img src="../static/images/link.jpg" alt="LinkedIn" class="icon">
+      </a>
+      <a href="https://github.com/J531-wq" target="_blank">
+        <img src="../static/images/Git.jpg" alt="GitHub" class="icon">
+      </a>
+      <a href="https://wa.me/2349128218989" target="_blank">
+        <img src="../static/images/wh.jpg" alt="WhatsApp" class="icon">
+      </a>
+      <a href="mailto:coderjoe16@gmail.com">
+        <img src="../static/images/EM.jpg" alt="Email" class="icon">
+      </a>
+    </div>
+
+    <form method="post" action="{% url 'contact' %}">
+  {% csrf_token %}
+  <input type="text" name="name" placeholder="Your Name" required>
+  <input type="email" name="email" placeholder="Your Email" required>
+  <textarea name="message" placeholder="Your Message" rows="5" required></textarea>
+  <button type="submit">Send Message</button>
+</form>
+
+  </section>
+
+  <footer>
+    © 2026 Joseph Omagu. All rights reserved.
+  </footer>
+
+  <script>
+  // Smooth scroll for hero buttons
+  function scrollToSection(id) {
+    const element = document.getElementById(id);
+    const offset = 80; // height of fixed navbar
+    const bodyTop = window.pageYOffset + element.getBoundingClientRect().top;
+    window.scrollTo({ top: bodyTop - offset, behavior: 'smooth' });
+  }
+
+  // Smooth scroll for all navbar links
+  document.querySelectorAll('nav a[href^="#"]').forEach(function(anchor) {
+    anchor.addEventListener('click', function(e) {
+      e.preventDefault();
+      const targetId = this.getAttribute('href').substring(1);
+      const element = document.getElementById(targetId);
+      if (element) {
+        const offset = 80; // height of fixed navbar
+        const bodyTop = window.pageYOffset + element.getBoundingClientRect().top;
+        window.scrollTo({ top: bodyTop - offset, behavior: 'smooth' });
+      }
+    });
+  });
+
+  // Contact form handler
+  function sendMessage(event) {
+    event.preventDefault();
+    alert("Message sent successfully! (Backend integration coming soon)");
+  }
+</script>
+
+</body>
+</html>
