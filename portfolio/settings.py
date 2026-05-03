@@ -88,3 +88,6 @@ EMAIL_USE_TLS = False
 # Values are pulled securely from .env
 EMAIL_HOST_USER = config("EMAIL_HOST_USER")
 EMAIL_HOST_PASSWORD = config("EMAIL_HOST_PASSWORD")
+
+
+print("ALLOWED_HOSTS =", ALLOWED_HOSTS)
